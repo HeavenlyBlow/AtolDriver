@@ -47,6 +47,17 @@ namespace AtolDriver
             return fptr.errorDescription();
         }
         
+        /// <summary>
+        /// Получить номер последнего документа в ФН
+        /// </summary>
+        /// <returns></returns>
+        public string GetLastDocumentNumber()
+        {
+            fptr.setParam(Constants.LIBFPTR_PARAM_DATA_TYPE, Constants.LIBFPTR_DT_STATUS);
+            fptr.queryData();
+            return $"{fptr.getParamInt(Constants.LIBFPTR_PARAM_DOCUMENT_NUMBER)}";
+        }
+        
 
         // private int SendJson<T>(T request, out string answer)
         // {
@@ -270,7 +281,7 @@ namespace AtolDriver
         }
 
         
-        public string PrintStatus()
+        public string GetStatus()
         {
             fptr.setParam(Constants.LIBFPTR_PARAM_DATA_TYPE, Constants.LIBFPTR_DT_STATUS);
             fptr.queryData();
