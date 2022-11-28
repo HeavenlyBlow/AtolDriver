@@ -34,9 +34,17 @@ namespace AtolDriver
         private int SendJson<T>(T request)
         {
             fptr.setParam(Constants.LIBFPTR_PARAM_JSON_DATA, JsonConvert.SerializeObject(request));
-            fptr.errorCode();
-            var str = fptr.errorDescription();
             return fptr.processJson();
+        }
+        
+        /// <summary>
+        /// Возвращает последнюю ошибку
+        /// </summary>
+        /// <returns></returns>
+        public string ReadError()
+        {
+            fptr.errorCode();
+            return fptr.errorDescription();
         }
         
 
